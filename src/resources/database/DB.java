@@ -15,17 +15,19 @@ import java.util.Map;
  */
 public class DB {
     private final String DRIVER = "com.mysql.jdbc.Driver";
-    //private final String DATABASE_URL="jdbc:mysql://localhost:3306/organizer?useSSL=false";
-    private static final String DATABASE_URL = "jdbc:mysql://172.27.190.104:3306/organizer?useSSL=false";
+    private static final String DATABASE_URL = "jdbc:mysql://172.27.186.137:3306/organizer?useSSL=false";
+    //private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/organizer?useSSL=false";
 
     private static String userName = "user";
     private static String password = "Password&&123H";
+    /*private static String userName = "user";
+    private static String password = "dresden001";*/
 
 
     public DB() {
-        /*try{
+        try{
             Class.forName(DRIVER);
-        }catch(ClassNotFoundException e){System.out.println("Driver not fount :"+e.getMessage());}*/
+        }catch(ClassNotFoundException e){System.out.println("Driver not found: " + e.getMessage());}
     }
 
     private static Connection openConnection() {

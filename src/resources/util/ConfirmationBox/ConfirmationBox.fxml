@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="175.0" prefWidth="400.0" style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXButton layoutX="200.0" layoutY="118.0" onAction="#cancel" prefHeight="28.0" prefWidth="66.0" style="-fx-border-color: white; -fx-border-radius: 3px;" text="Cancel" textFill="WHITE" />
+      <JFXButton buttonType="RAISED" layoutX="283.0" layoutY="119.0" onAction="#confirm" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #FF6B6B;" text="Confirm" textFill="WHITE" />
+      <Label fx:id="contentTextLbl" layoutX="93.0" layoutY="36.0" text="Label" textFill="WHITE" />
+      <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="22.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/warning.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
