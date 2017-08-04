@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="380.0" prefWidth="1245.0" style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.event.UI.admin.EventManagerController">
+   <children>
+      <JFXButton layoutX="20.0" layoutY="14.0" style="-fx-padding: 0px;" text="">
+         <graphic>
+            <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../resources/images/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label layoutX="78.0" layoutY="14.0" style="-fx-font-size: 36px;" stylesheets="@../../../../resources/fonts/Raleway-Light.css" text="Your created events" textFill="WHITE" />
+      <ScrollPane layoutX="68.0" layoutY="82.0" prefHeight="268.0" prefWidth="1160.0" stylesheets="@../EventMain.css">
+         <content>
+            <HBox fx:id="ownEvents" prefHeight="250.0" prefWidth="1115.0" spacing="20" styleClass="eventListBox" />
+         </content>
+      </ScrollPane>
+      <JFXButton layoutX="408.0" layoutY="17.0" onAction="#createEvent" style="-fx-padding: 0px;">
+         <graphic>
+            <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../resources/images/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

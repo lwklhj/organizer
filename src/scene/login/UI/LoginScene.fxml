@@ -18,9 +18,9 @@
          <children>
             <Label layoutX="132.0" layoutY="263.0" style="-fx-font-size: 42px;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="Welcome back!" textFill="WHITE" />
             <Label layoutX="132.0" layoutY="308.0" prefHeight="35.0" prefWidth="284.0" style="-fx-font-size: 24px;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="Sign in to continue" textFill="#ffffffb2" />
-            <JFXTextField fx:id="userIDField" focusColor="WHITE" labelFloat="true" layoutX="132.0" layoutY="409.0" onAction="#loginClick" prefHeight="29.0" prefWidth="370.0" promptText="User ID" unFocusColor="#ffffff80" />
-            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="132.0" layoutY="463.0" onAction="#loginClick" prefHeight="29.0" prefWidth="370.0" promptText="Password" style="-fx-font-size: 15px;" unFocusColor="#ffffff80" />
-            <JFXButton buttonType="RAISED" layoutX="132.0" layoutY="562.0" onAction="#loginClick" prefHeight="36.0" prefWidth="370.0" style="-fx-background-color: #757575; -fx-font-size: 20px;" text="LOG IN" textFill="WHITE" />
+            <JFXTextField fx:id="userIDField" focusColor="WHITE" labelFloat="true" layoutX="132.0" layoutY="409.0" onAction="#loginClick" prefHeight="29.0" prefWidth="370.0" promptText="User ID" stylesheets="@LoginScene.css" unFocusColor="#ffffff80" />
+            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="132.0" layoutY="463.0" onAction="#loginClick" prefHeight="29.0" prefWidth="370.0" promptText="Password" style="-fx-font-size: 15px;" stylesheets="@LoginScene.css" unFocusColor="#ffffff80" />
+            <JFXButton buttonType="RAISED" layoutX="132.0" layoutY="562.0" onAction="#loginClick" prefHeight="36.0" prefWidth="370.0" style="-fx-background-color: #757575; -fx-font-size: 20px;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="LOG IN" textFill="WHITE" />
             <Hyperlink layoutX="132.0" layoutY="515.0" onAction="#forgotPassword" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="Forgot password?" textFill="#ffffffb2" />
             <JFXCheckBox checkedColor="#ffffff00" layoutX="367.0" layoutY="519.0" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="Remember me" textFill="WHITE" unCheckedColor="#ffffffb2" />
          </children>

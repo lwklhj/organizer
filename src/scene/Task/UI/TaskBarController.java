@@ -1,5 +1,6 @@
 package scene.Task.UI;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -8,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import scene.Task.TaskControllerKt;
 import scene.Task.entity.Task;
 
 import java.net.URL;
@@ -23,12 +25,16 @@ public class TaskBarController implements Initializable{
 
     private Task task;
 
+    private TaskMainController tc;
+
 
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
 
     }
     public Task getTask(){
@@ -40,16 +46,18 @@ public class TaskBarController implements Initializable{
         addLabel(taskName);
         if(task.getStart()!=null){
 
-            String timeLocation="1800"+"1700";
-            if(task.getLocation()!=null){
+            String timeLocation= TaskControllerKt.calStringTime(task.getStart());
+            if(task.getLocation()!=null||task.getLocation()!=""){
                 timeLocation+=" at "+task.getLocation();
             }
             addLabel(timeLocation);
         }
-        if(task.getEvent()!=null){
+        if(task.getEvent()!=null||task.getEvent()!=""){
             String event=task.getEvent();
             addLabel(event);
         }
+        taskInfoVbox.setStyle("-fx-background-color:"+task.getPriority().getColor());
+
 
 
 

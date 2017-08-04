@@ -1,0 +1,21 @@
+/* Scroll pane */
+* {
+    -fx-background-color: transparent;
+}
+
+.button {
+    -fx-background-color: red;
+    -fx-background-radius: 0px;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: grey;
+    -fx-background-insets: 3 0 3 0;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button,
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: "";
+    -fx-padding: 0;
+}

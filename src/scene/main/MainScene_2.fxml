@@ -55,7 +55,7 @@
                      </graphic>
                   </ToggleButton>
                   <AnchorPane prefHeight="12.0" />
-                  <ToggleButton mnemonicParsing="false" prefHeight="63.0" prefWidth="63.0" textFill="WHITE" toggleGroup="$menuBar">
+                  <ToggleButton mnemonicParsing="false" onAction="#taskClick" prefHeight="63.0" prefWidth="63.0" textFill="WHITE" toggleGroup="$menuBar">
                      <graphic>
                         <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                            <image>

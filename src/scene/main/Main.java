@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Parent root = null;
         try {root = FXMLLoader.load(getClass().getResource("../login/UI/LoginScene.fxml"));} catch (IOException e) {}
-        //try {root = FXMLLoader.load(getClass().getResource("../event/UI/EventAdd.fxml"));} catch (IOException e) {}
+        //try {root = FXMLLoader.load(getClass().getResource("../event/UI/admin/EventEditor.fxml"));} catch (IOException e) {}
 
         Scene scene = new Scene(root);
 

@@ -1,0 +1,24 @@
+.text-input {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-family: 'Raleway Light';
+    -fx-font-style: normal;
+    -fx-font-weight: 300;
+    -fx-font-smoothing-type: gray;
+}
+
+.date-picker .text-field {
+    -fx-font-size: 24px;
+    -fx-font-family: 'Raleway Light';
+    -fx-font-style: normal;
+    -fx-font-weight: 300;
+    -fx-font-smoothing-type: gray;
+}
+
+.time-picker .text-field {
+    -fx-font-size: 24px;
+    -fx-font-family: 'Raleway Light';
+    -fx-font-style: normal;
+    -fx-font-weight: 300;
+    -fx-font-smoothing-type: gray;
+}

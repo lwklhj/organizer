@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,7 +15,11 @@
          <children>
             <Label fx:id="eventTitle" layoutX="25.0" layoutY="25.0" style="-fx-font-size: 48px;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="&lt;EVENT TITLE&gt;" textFill="WHITE" />
             <Label fx:id="eventOrganizer" layoutX="25.0" layoutY="78.0" style="-fx-font-size: 24px;" stylesheets="@../../../resources/fonts/Roboto-Thin.css" text="&lt;ORGANIZER NAME HERE&gt;" textFill="WHITE" />
-            <Label fx:id="eventDesc" layoutX="25.0" layoutY="264.0" style="-fx-font-size: 24px;" stylesheets="@../../../resources/fonts/Roboto-Thin.css" text="&lt;EVENT DESCRIPTION&gt;" textFill="WHITE" />
+            <ScrollPane layoutX="25.0" layoutY="235.0" prefHeight="200.0" prefWidth="475.0" stylesheets="@../../calendar/UI/Agenda.css">
+               <content>
+                  <Label fx:id="eventDesc" maxWidth="460.0" style="-fx-font-size: 24px;" stylesheets="@../../../resources/fonts/Roboto-Thin.css" text="&lt;EVENT DESCRIPTION&gt;" textFill="WHITE" />
+               </content>
+            </ScrollPane>
             <Label fx:id="eventDate" layoutX="63.0" layoutY="149.0" style="-fx-font-size: 24px;" stylesheets="@../../../resources/fonts/Roboto-Thin.css" text="&lt;EVENT DATE&gt;" textFill="WHITE" />
             <Label fx:id="eventLocation" layoutX="62.0" layoutY="186.0" style="-fx-font-size: 24px;" stylesheets="@../../../resources/fonts/Roboto-Thin.css" text="&lt;EVENT LOCATION&gt;" textFill="WHITE" />
             <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="25.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">

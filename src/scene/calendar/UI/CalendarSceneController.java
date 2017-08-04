@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import scene.calendar.CalendarController;
 import scene.calendar.entity.CustomButton;
 import scene.calendar.entity.CustomCalendar;
 
@@ -20,9 +21,6 @@ import java.util.ResourceBundle;
  * Created by Liu Woon Kit on 23/5/2017.
  */
 public class CalendarSceneController implements Initializable {
-    // Database
-    //private DB db = new DB();
-
     // Calendar
     private CustomCalendar calendar = new CustomCalendar();
     private final Label DAY_LABEL[] = {new Label("SUNDAY"), new Label("MONDAY"), new Label("TUESDAY"), new Label("WEDNESDAY"), new Label("THURSDAY"), new Label("FRIDAY"), new Label("SATURDAY")};
@@ -36,15 +34,15 @@ public class CalendarSceneController implements Initializable {
     GridPane calGrid;
 
     @FXML
-    Button modeDisplay;
-
-    //Button dateDisplay;
+    Button dateDisplay;
 
     @FXML
     AnchorPane agendaPane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        CalendarController.setAgendaController(agendaController);
+
         // Agenda
         fxmlLoader.setController(agendaController);
         try {agendaPane.getChildren().setAll((AnchorPane)fxmlLoader.load());} catch (IOException e) {}
@@ -55,8 +53,7 @@ public class CalendarSceneController implements Initializable {
     }
 
     public void dateSelector() {
-        //modeDisplay.setText(calendar.toString());
-        modeDisplay.setText(calendar.formatDate("MMMM YYYY"));
+        dateDisplay.setText(calendar.formatDate("MMMM YYYY"));
 
         int startPoint = calendar.getFirstDayOfFirstWeek() - 1;
         int endPoint = startPoint + calendar.getMaxDaysInMonth();
@@ -64,16 +61,9 @@ public class CalendarSceneController implements Initializable {
         for(int i = 1; startPoint < endPoint; i++,startPoint++) {
             CustomButton customButton = CALENDAR_BUTTON[startPoint];
             GregorianCalendar gregorianCalendar = new GregorianCalendar(calendar.getSelectedYear(), calendar.getSelectedMonth(), i);
-
-            customButton.setDateLbl(gregorianCalendar);
-            customButton.setOnAction(event -> agendaController.getTimes(gregorianCalendar));
-            //customButton.display();
+            customButton.setDate(gregorianCalendar);
+            customButton.display();
         }
-
-        /*for(int i = calendar.getFirstDayOfFirstWeek(); i < calendar.getMaxDaysInMonth() +  calendar.getFirstDayOfFirstWeek(); i++) {
-            CALENDAR_BUTTON[i - 1].setDate(new GregorianCalendar(calendar.getSelectedYear(), calendar.getSelectedMonth(), i - calendar.getFirstDayOfFirstWeek() + 1));
-            CALENDAR_BUTTON[i - 1].display();
-        }*/
     }
 
     public void populateGrid() {
@@ -81,7 +71,6 @@ public class CalendarSceneController implements Initializable {
         for (int i = 0; i < 7; i++) {
             calGrid.add(DAY_LABEL[i], i, 0);
             DAY_LABEL[i].setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            //DAY_LABEL[i].setAlignment(Pos.BASELINE_LEFT);
             DAY_LABEL[i].getStylesheets().add(getClass().getResource("../../../resources/fonts/Roboto-Medium.css").toExternalForm());
         }
 

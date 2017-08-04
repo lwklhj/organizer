@@ -9,14 +9,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import resources.database.entity.User;
@@ -26,6 +29,7 @@ import scene.Task.entity.Task;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 /**
@@ -48,9 +52,8 @@ public class TaskMainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        user=new User();
-        taskArr=TaskControllerKt.getTaskByUser(user);
-        updateTaskListContontainer(taskArr);
+
+        updateTaskListContontainer();
 
         //add add icon
         //addTaskButton.heightProperty().;
@@ -73,16 +76,30 @@ public class TaskMainController implements Initializable {
             Parent addTaskScene=loader.load();
 
             Stage stage=new Stage(StageStyle.UNDECORATED);
+            stage.initOwner(((Node)(event.getTarget())).getScene().getWindow());
+            stage.initModality(Modality.WINDOW_MODAL);
+
             stage.setTitle("ADD TASK");
             stage.setScene(new Scene(addTaskScene));
-            stage.show();
+            stage.showAndWait();
+            updateTaskListContontainer();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
     }
-    private void updateTaskListContontainer(ArrayList<Task> arr){
+
+    private void updateTaskListContontainer(){
+        user=new User();
+        user.setUserID("1234567");
+        if(taskArr!=null) taskArr.clear();
+        taskContainer.getChildren().clear();
+
+
+        taskArr=TaskControllerKt.getTaskByUser(user.getUserID());
+        Collections.sort(taskArr);
         for(Task t:taskArr){
             FXMLLoader loader=new FXMLLoader(getClass().getResource("TaskBar.fxml"));
             try {
@@ -92,14 +109,25 @@ public class TaskMainController implements Initializable {
                 node.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        FXMLLoader taskDetailSceneLoader=new FXMLLoader(getClass().getResource("TaskDetails.fxml"));
-                        try{
-                            AnchorPane ap=taskDetailSceneLoader.load();
-                            TaskDetailsController tdc=taskDetailSceneLoader.getController();
-                            tdc.setTask(tc.getTask());
-                            taskDetailsContainer.getChildren().setAll(ap);
+                        MouseButton btn=event.getButton();
+                        if(btn==MouseButton.PRIMARY) {
+                            FXMLLoader taskDetailSceneLoader = new FXMLLoader(getClass().getResource("TaskDetails.fxml"));
+                            try {
+                                AnchorPane ap = taskDetailSceneLoader.load();
+                                TaskDetailsController tdc = taskDetailSceneLoader.getController();
+                                tdc.setTask(tc.getTask());
+                                taskDetailsContainer.getChildren().setAll(ap);
 
-                        }catch (IOException e){ e.printStackTrace();}
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else if(btn==MouseButton.SECONDARY){
+
+                            TaskControllerKt.deleteTaskMain(tc.getTask());
+                            updateTaskListContontainer();
+                        }
+
                     }
                 });
                 taskContainer.getChildren().add(node);

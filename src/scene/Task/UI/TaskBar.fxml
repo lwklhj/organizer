@@ -3,8 +3,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane onMouseClicked="#showTaskDetails" prefHeight="35.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.Task.UI.TaskBarController">
+<AnchorPane onMouseClicked="#showTaskDetails" prefHeight="35.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.Task.UI.TaskBarController">
    <children>
-      <VBox fx:id="taskInfoVbox" layoutX="48.0" prefHeight="35.0" prefWidth="312.0" style="-fx-background-color: #2196F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox fx:id="taskInfoVbox" layoutX="48.0" prefHeight="35.0" prefWidth="312.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

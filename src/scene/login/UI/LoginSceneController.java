@@ -46,7 +46,7 @@ public class LoginSceneController implements Initializable {
 
     @FXML
     void loginClick(ActionEvent event) {
-        if(!loginController.verify(userIDField.getText(), new String(passwordField.getText()))) {
+        if(!loginController.verifyUser(userIDField.getText(), new String(passwordField.getText()))) {
             System.out.println("Error: Wrong username or password");
             return;
         }

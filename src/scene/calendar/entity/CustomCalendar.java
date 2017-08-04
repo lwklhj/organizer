@@ -7,7 +7,6 @@ import java.util.GregorianCalendar;
  * Created by Liu Woon Kit on 23/11/2016.
  */
 public class CustomCalendar {
-    // Defunct DO NOT USE
     private GregorianCalendar date = new GregorianCalendar();
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
     private final GregorianCalendar CURRENT_DATE = date;
@@ -52,5 +51,12 @@ public class CustomCalendar {
 
     public void manipulateMth(int i) {
         date.add(GregorianCalendar.MONTH, i);
+    }
+
+    // yyyy-mm-dd
+    public static String dateFormat(GregorianCalendar gregorianCalendar) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        simpleDateFormat.setCalendar(gregorianCalendar);
+        return simpleDateFormat.format(gregorianCalendar.getTime());
     }
 }

@@ -1,86 +1,104 @@
 package scene.event.entity;
 
+import org.jetbrains.annotations.NotNull;
+import resources.database.DB;
+
+import javax.sql.rowset.CachedRowSet;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 /**
  * Created by Liu Woon Kit on 12/6/2017.
  */
-public class Event {
-    private String eventTitle;
-    private int eventID;
-    private String eventDesc;
-    private GregorianCalendar dateOfEvent;
+public class Event implements Comparable<Event> {
+    private int id;
+    private String title;
+    private String desc;
+    private String location;
+    private GregorianCalendar date;
     private Time startTime;
     private Time endTime;
 
-    // For CCA organizers
-    private boolean isApproved;
-    // For students
-    private boolean isRegisteredByUser;
+    private String status; // Not approved, waiting for approval, approved...etc
+    private boolean isRegistered;
 
-    public Event(String eventTitle, int eventID, String eventDesc, Date dateOfEvent, Time startTime, Time endTime) {
-        this.eventTitle = eventTitle;
-        this.eventID = eventID;
-        this.eventDesc = eventDesc;
-        this.dateOfEvent = new GregorianCalendar();
-        this.dateOfEvent.setTime(dateOfEvent);
+    public Event(int id, String title, String desc, String location, Date date, Time startTime, Time endTime) {
+        this.id = id;
+        this.title = title;
+        this.desc = desc;
+        this.location = location;
+        this.date = new GregorianCalendar();
+        this.date.setTime(date);
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-    public Event(String eventTitle, int eventID, String eventDesc, GregorianCalendar dateOfEvent, Time startTime, Time endTime, boolean isApproved) {
-        this.eventTitle = eventTitle;
-        this.eventID = eventID;
-        this.eventDesc = eventDesc;
-        this.dateOfEvent = dateOfEvent;
+    public Event(int id, String title, String desc, String location, Date date, Time startTime, Time endTime, boolean isRegistered) {
+        this.id = id;
+        this.title = title;
+        this.desc = desc;
+        this.location = location;
+        this.date = new GregorianCalendar();
+        this.date.setTime(date);
         this.startTime = startTime;
         this.endTime = endTime;
-        this.isApproved = isApproved;
+        this.isRegistered = isRegistered;
     }
 
-    public Event(String eventTitle, int eventID, String eventDesc, Date dateOfEvent, Time startTime, Time endTime, boolean isRegisteredByUser) {
-        this.eventTitle = eventTitle;
-        this.eventID = eventID;
-        this.eventDesc = eventDesc;
-        this.dateOfEvent = new GregorianCalendar();
-        this.dateOfEvent.setTime(dateOfEvent);
+    public Event(int id, String title, String desc, String location, Date date, Time startTime, Time endTime, String status) {
+        this.id = id;
+        this.title = title;
+        this.desc = desc;
+        this.location = location;
+        this.date = new GregorianCalendar();
+        this.date.setTime(date);
         this.startTime = startTime;
         this.endTime = endTime;
-        this.isRegisteredByUser = isRegisteredByUser;
+        this.status = status;
     }
 
-    public String getEventTitle() {
-        return eventTitle;
+    public int getId() {
+        return id;
     }
 
-    public void setEventTitle(String eventTitle) {
-        this.eventTitle = eventTitle;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getEventID() {
-        return eventID;
+    public String getTitle() {
+        return title;
     }
 
-    public void setEventID(int eventID) {
-        this.eventID = eventID;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getEventDesc() {
-        return eventDesc;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setEventDesc(String eventDesc) {
-        this.eventDesc = eventDesc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public GregorianCalendar getDateOfEvent() {
-        return dateOfEvent;
+    public String getLocation() {
+        return location;
     }
 
-    public void setDateOfEvent(GregorianCalendar dateOfEvent) {
-        this.dateOfEvent = dateOfEvent;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public GregorianCalendar getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date.setTime(date);
     }
 
     public Time getStartTime() {
@@ -99,19 +117,84 @@ public class Event {
         this.endTime = endTime;
     }
 
-    public boolean isApproved() {
-        return isApproved;
+    public String getStatus() {
+        return status;
     }
 
-    public void setApproved(boolean approved) {
-        isApproved = approved;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public boolean isRegisteredByUser() {
-        return isRegisteredByUser;
+    public boolean isRegistered() {
+        return isRegistered;
     }
 
-    public void setRegisteredByUser(boolean registeredByUser) {
-        isRegisteredByUser = registeredByUser;
+    public void setRegistered(boolean registered) {
+        isRegistered = registered;
+    }
+
+    public static ArrayList<Event> getEvents(String userID) {
+        ArrayList<Event> eventArrayList = new ArrayList<>();
+        CachedRowSet rs = DB.read("SELECT e.eventID, e.eventTitle, e.eventDesc, e.location, e.date, e.startTime, e.endTime, ue.userID FROM Events e LEFT JOIN UserEvents ue ON e.eventID = ue.eventID WHERE ue.userID = '"+userID+"' OR ue.userID IS NULL;");
+        try {
+            while (rs.next()) {
+                eventArrayList.add(new Event(rs.getInt("eventID"), rs.getString("eventTitle"), rs.getString("eventDesc"), rs.getString("location"), rs.getDate("date"), rs.getTime("startTime"), rs.getTime("endTime"), rs.getString("userID")==null ? false : true));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return eventArrayList;
+    }
+
+    public void updateUserEvent(String userID) {
+        if(!isRegistered()) {
+            DB.update("DELETE FROM UserEvents WHERE userID = '"+userID+"' && eventID = '"+id+"';");
+        }
+        else {
+            DB.update("INSERT INTO UserEvents VALUES('"+id+"', '"+userID+"');");
+        }
+    }
+
+    public static ArrayList<Event> getOrganizerEvents(String userID) {
+        ArrayList<Event> eventArrayList = new ArrayList<>();
+        CachedRowSet rs = DB.read("SELECT eventID, eventTitle, eventDesc, location, date, startTime, endTime, status FROM Events WHERE organizerID = '"+userID+"'");
+        try {
+            while(rs.next()) {
+                eventArrayList.add(new Event(rs.getInt("eventID"), rs.getString("eventTitle"), rs.getString("eventDesc"), rs.getString("location"), rs.getDate("date"), rs.getTime("startTime"), rs.getTime("endTime"), rs.getString("status")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return eventArrayList;
+    }
+
+    public static void createOrganizerEvent(String title, String desc, String location, Date date, Time startTime, Time endTime, String userID) {
+        DB.update("INSERT INTO Events VALUES('"+title+"', NULL, '"+desc+"', '"+location+"', '"+date+"', '"+startTime+"', '"+endTime+"', 0,'"+userID+"')");
+    }
+
+    public void updateOrganizerEvent() {
+        DB.update("UPDATE Events SET eventTitle = '"+title+"', eventDesc= '"+desc+"', location = '"+location+"', date = '"+new Date(date.getTimeInMillis())+"', startTime = '"+startTime+"', endTime = '"+endTime+"'  WHERE eventID = '"+id+"' ");
+    }
+
+    public void deleteOrganizerEvent() {
+        DB.update("DELETE FROM Events WHERE eventID = '"+id+"' ");
+    }
+
+    public String getOrganizerName() {
+        CachedRowSet rs = DB.read("SELECT name FROM User WHERE userID = (SELECT organizerID FROM Events WHERE eventID = '"+id+"')");
+        try {
+            if(rs.next()) {
+                return rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    @Override
+    public int compareTo(Event e) {
+        return -1 * this.date.compareTo(e.date);
     }
 }

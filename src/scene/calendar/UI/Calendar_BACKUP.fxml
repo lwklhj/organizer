@@ -14,7 +14,7 @@
          <children>
             <AnchorPane layoutX="14.0">
                <children>
-                  <Button fx:id="modeDisplay" contentDisplay="CENTER" mnemonicParsing="false" opacity="0.87" prefHeight="48.0" prefWidth="338.0" style="-fx-background-color: transparent; -fx-text-fill: #455a64; -fx-font-size: 32px; -fx-font-style: normal; -fx-padding: 0px;" stylesheets="@../../../resources/fonts/Roboto-Medium.css" text="PLACEHOLDER" />
+                  <Button fx:id="dateDisplay" contentDisplay="CENTER" mnemonicParsing="false" opacity="0.87" prefHeight="48.0" prefWidth="338.0" style="-fx-background-color: transparent; -fx-text-fill: #455a64; -fx-font-size: 32px; -fx-font-style: normal; -fx-padding: 0px;" stylesheets="@../../../resources/fonts/Roboto-Medium.css" text="PLACEHOLDER" />
                   <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#previousMth" opacity="0.54" style="-fx-background-color: transparent; -fx-padding: 0px;">
                      <graphic>
                         <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">

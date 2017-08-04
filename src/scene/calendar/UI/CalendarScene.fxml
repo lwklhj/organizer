@@ -36,7 +36,7 @@
                <children>
                   <AnchorPane layoutY="101.0" prefHeight="62.0" prefWidth="450.0">
                      <children>
-                        <Button fx:id="modeDisplay" contentDisplay="CENTER" layoutX="10.0" mnemonicParsing="false" opacity="0.87" prefHeight="62.0" prefWidth="305.0" style="-fx-background-color: transparent; -fx-font-size: 42px; -fx-padding: 0px;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="September 2017" textFill="WHITE" />
+                        <Button fx:id="dateDisplay" contentDisplay="CENTER" layoutX="10.0" mnemonicParsing="false" opacity="0.87" prefHeight="62.0" prefWidth="305.0" style="-fx-background-color: transparent; -fx-font-size: 42px; -fx-padding: 0px;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="September 2017" textFill="WHITE" />
                         <AnchorPane layoutX="315.0" layoutY="7.0">
                            <children>
                               <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#previousMth" opacity="0.54" style="-fx-background-color: transparent; -fx-padding: 0px;">

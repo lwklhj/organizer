@@ -1,12 +1,16 @@
 package scene.event.UI;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import scene.event.UI.admin.EventEditorController;
 import scene.event.entity.Event;
 
 import java.io.IOException;
@@ -45,20 +49,22 @@ public class EventObjectController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Event date
-        monthLbl.setText(MONTH[event.getDateOfEvent().get(GregorianCalendar.MONTH)]);
-        dayOfMonthLbl.setText(event.getDateOfEvent().get(GregorianCalendar.DAY_OF_MONTH) + "");
-        dayOfWeekLbl.setText(DAY_OF_WEEK[event.getDateOfEvent().get(GregorianCalendar.DAY_OF_WEEK) - 1]);
+        monthLbl.setText(MONTH[event.getDate().get(GregorianCalendar.MONTH)]);
+        dayOfMonthLbl.setText(event.getDate().get(GregorianCalendar.DAY_OF_MONTH) + "");
+        dayOfWeekLbl.setText(DAY_OF_WEEK[event.getDate().get(GregorianCalendar.DAY_OF_WEEK) - 1]);
 
         // Event Title
-        eventTitleLbl.setText(event.getEventTitle());
-        //eventDescLbl.setText(event.getEventDesc().substring(0, 20) + "...");
+        eventTitleLbl.setText(event.getTitle());
+        if(event.getDesc().length() > 20) {
+            eventDescLbl.setText(event.getDesc().substring(0, 20) + "...");
+        }
 
         // On click event
         paneClick.setOnMouseClicked(e -> {
             Stage stage = new Stage();
             stage.initModality(APPLICATION_MODAL);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../UI/EventView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EventView.fxml"));
             fxmlLoader.setController(new EventViewController(event));
             try {stage.setScene(new Scene(fxmlLoader.load()));} catch (IOException e1) {
                 e1.printStackTrace();
@@ -70,6 +76,27 @@ public class EventObjectController implements Initializable {
 
             stage.show();
         });
+    }
+
+    public void setEditorMode(boolean b) {
+        if(b) {
+            paneClick.setOnMouseClicked(e -> {
+                Stage stage = new Stage();
+                stage.initModality(APPLICATION_MODAL);
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("admin/EventEditor.fxml"));
+                fxmlLoader.setController(new EventEditorController(event));
+                try {stage.setScene(new Scene(fxmlLoader.load()));} catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                // Work around for setResizable bug
+                stage.setResizable(false);
+                stage.sizeToScene();
+
+                stage.show();
+            });
+        }
     }
 
     public EventObjectController(Event event) {
