@@ -1,3 +1,7 @@
+@font-face {
+    src: url("Roboto-Medium.ttf"),
+}
+
 .text{
     -fx-font-family: 'Roboto Medium';
     -fx-font-style: normal;

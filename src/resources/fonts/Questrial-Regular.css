@@ -1,9 +1,9 @@
 @font-face {
-    src: url("Ubuntu-Regular.ttf"),
+    src: url("Questrial-Regular.ttf"),
 }
 
-.text{
-    -fx-font-family: 'Ubuntu Regular';
+.text {
+    -fx-font-family: "Questrial";
     -fx-font-style: normal;
     -fx-font-weight: 400;
     -fx-font-smoothing-type: gray;

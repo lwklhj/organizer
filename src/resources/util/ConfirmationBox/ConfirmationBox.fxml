@@ -5,7 +5,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 <AnchorPane prefHeight="175.0" prefWidth="400.0" style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <JFXButton layoutX="200.0" layoutY="118.0" onAction="#cancel" prefHeight="28.0" prefWidth="66.0" style="-fx-border-color: white; -fx-border-radius: 3px;" text="Cancel" textFill="WHITE" />

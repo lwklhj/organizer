@@ -1,6 +1,6 @@
 package resources.database;
 
-import scene.login.entity.User;
+import resources.database.entity.User;
 
 /**
  * Created by Liu Woon Kit on 5/7/2017.
@@ -13,8 +13,8 @@ public class UserAccess {
     }
 
     public UserAccess(User user) {
-    this.user = user;
-}
+        this.user = user;
+    }
 
     public static User getUser() {
         return user;

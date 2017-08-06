@@ -1,3 +1,7 @@
+@font-face {
+    src: url("Raleway-Thin.ttf"),
+}
+
 .text{
     -fx-font-family: 'Raleway Thin';
     -fx-font-style: normal;

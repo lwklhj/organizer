@@ -2,8 +2,6 @@ package resources.database;
 
 import javax.sql.rowset.CachedRowSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
 
 class test{
     public static void main(String[] args) {
