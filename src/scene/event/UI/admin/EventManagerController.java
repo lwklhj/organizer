@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 public class EventManagerController implements Initializable {
 
     @FXML
-    private HBox ownEvents;
+    private HBox organizerEvents;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -43,6 +43,7 @@ public class EventManagerController implements Initializable {
     }
 
     public void displayOrganizerEvents() {
+        clearDisplay();
         ArrayList<Event> eventArrayList = EventController.getOrganizerEvents();
         for(Event event : eventArrayList) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../EventObject.fxml"));
@@ -50,12 +51,16 @@ public class EventManagerController implements Initializable {
 
             fxmlLoader.setController(eventObjectController);
             try {
-                ownEvents.getChildren().add(fxmlLoader.load());
+                organizerEvents.getChildren().add(fxmlLoader.load());
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
 
             eventObjectController.setEditorMode(true);
         }
+    }
+
+    public void clearDisplay() {
+        organizerEvents.getChildren().clear();
     }
 }

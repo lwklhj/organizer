@@ -1,10 +1,7 @@
 package scene.event.UI.admin;
 
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTimePicker;
+import com.jfoenix.controls.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +42,7 @@ public class EventEditorController implements Initializable {
     private JFXTextField eventTitleField;
 
     @FXML
-    private TextArea eventDescField;
+    private JFXTextArea eventDescField;
 
     @FXML
     private JFXDatePicker eventDateField;
@@ -58,26 +55,6 @@ public class EventEditorController implements Initializable {
 
     @FXML
     private JFXTextField eventLocationField;
-
-    // Error message
-
-    @FXML
-    private Label eventTitleErrMsg;
-
-    @FXML
-    private Label eventDescErrMsg;
-
-    @FXML
-    private Label eventDateErrMsg;
-
-    @FXML
-    private Label startTimeErrMsg;
-
-    @FXML
-    private Label endTimeErrMsg;
-
-    @FXML
-    private Label eventLocationErrMsg;
 
     // Event creation
     public EventEditorController() {
@@ -102,63 +79,57 @@ public class EventEditorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*startTimeField.valueProperty().addListener(event -> {
-            if(endTimeField.getValue() != null) {
-                if (startTimeField.getValue().isAfter(endTimeField.getValue())) {
-                    System.out.println("ERROR: Start Time cannot be after End Time.");
-                }
-            }
-        });
 
-        endTimeField.valueProperty().addListener(event -> {
-            if(startTimeField.getValue() != null) {
-                if(startTimeField.getValue().isAfter(endTimeField.getValue())) {
-                    System.out.println("ERROR: Start Time cannot be after End Time.");
-                }
-            }
-
-        });*/
     }
 
     public boolean validateFields() {
         boolean result = true;
 
-        eventTitleErrMsg.setText(null);
-        eventDescErrMsg.setText(null);
-        eventDateErrMsg.setText(null);
-        startTimeErrMsg.setText(null);
-        endTimeErrMsg.setText(null);
-        eventLocationErrMsg.setText(null);
+        String errMsg = "";
 
         if(eventTitleField.getText().trim().isEmpty()) {
-            eventTitleErrMsg.setText("Enter a title");
+            errMsg += "\nEnter a title";
             result = false;
         }
 
         if(eventDescField.getText().trim().isEmpty()) {
-            eventDescErrMsg.setText("Enter a description");
+            errMsg += "\nEnter a description";
+            result = false;
+        }
+
+        if(eventDateField.getValue() == null) {
+            errMsg += "\nEnter a date";
             result = false;
         }
 
         if(startTimeField.getValue() == null) {
-            startTimeErrMsg.setText("Enter a start time");
+            errMsg += "\nEnter a start time";
             result = false;
         }
 
         if(endTimeField.getValue() == null) {
-            endTimeErrMsg.setText("Enter a end time");
+            errMsg += "\nEnter an end time";
             result = false;
         }
 
-        if(startTimeField.getValue().isAfter(endTimeField.getValue())) {
-            startTimeErrMsg.setText("Start time cannot be before end time");
-            endTimeErrMsg.setText("WAT");
-            result = false;
+        if(startTimeField.getValue() != null && endTimeField.getValue() != null) {
+            if (startTimeField.getValue().isAfter(endTimeField.getValue())) {
+                errMsg += "\nStart time cannot be after end time";
+                //endTimeErrMsg.setText("End time cannot be before start time ");
+                result = false;
+            }
         }
 
         if(eventLocationField.getText().trim().isEmpty()) {
-            eventLocationErrMsg.setText("Enter a location");
+            errMsg += "\nEnter a location";
             result = false;
+        }
+
+        if(!result) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Check input fields");
+            alert.setContentText(errMsg);
+            alert.showAndWait();
         }
 
         return result;
@@ -171,7 +142,7 @@ public class EventEditorController implements Initializable {
 
     @FXML
     void saveEvent() {
-        if(!validateFields()) {
+        if(validateFields() == false) {
             return;
         }
 
@@ -201,6 +172,8 @@ public class EventEditorController implements Initializable {
         Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
         alert2.setHeaderText("Event saved");
         alert2.showAndWait();
+
+        ((Stage)eventTitleField.getScene().getWindow()).close();
     }
 
     @FXML

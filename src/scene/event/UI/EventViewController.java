@@ -37,7 +37,10 @@ public class EventViewController implements Initializable {
     private Label eventDesc;
 
     @FXML
-    private JFXButton buttonAction;
+    private JFXButton joinOrLeaveEventBtn;
+
+    @FXML
+    private JFXButton viewEventTasksBtn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,29 +63,39 @@ public class EventViewController implements Initializable {
         eventDate.setText(dateFormat.format(event.getDate().getTime()) + " " + timeFormat.format(event.getStartTime()) + "-" + timeFormat.format(event.getEndTime()));
 
         eventLocation.setText(event.getLocation());
-        setButtonLabel();
+        setButtons();
     }
 
-    public void setButtonLabel() {
+    public void setButtons() {
         if(event.isRegistered()) {
-            buttonAction.setText("LEAVE");
+            joinOrLeaveEventBtn.setText("LEAVE");
+            viewEventTasksBtn.setVisible(true);
         }
-        else
-            buttonAction.setText("JOIN");
+        else {
+            joinOrLeaveEventBtn.setText("JOIN");
+            viewEventTasksBtn.setVisible(false);
+        }
     }
 
     @FXML
-    void actionTrigger() {
+    void joinOrLeaveEvent() {
+        // show confirmation box
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText(buttonAction.getText().toLowerCase() + " event?");
+        alert.setHeaderText(joinOrLeaveEventBtn.getText().toLowerCase() + " event?");
         Optional<ButtonType> result = alert.showAndWait();
 
         if(result.get() == ButtonType.CANCEL) {
             return;
         }
 
+        // if yes
         event.setRegistered(!event.isRegistered());
-        setButtonLabel();
+        setButtons();
         EventController.updateUserEvent(event);
+    }
+
+    @FXML
+    void viewEventTasks() {
+
     }
 }

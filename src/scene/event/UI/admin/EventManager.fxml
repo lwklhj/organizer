@@ -21,7 +21,7 @@
       </JFXButton>
       <ScrollPane layoutX="58.0" layoutY="82.0" prefHeight="268.0" prefWidth="1160.0" stylesheets="@../EventMain.css">
          <content>
-            <HBox fx:id="ownEvents" prefHeight="250.0" prefWidth="1115.0" spacing="20" styleClass="eventListBox" />
+            <HBox fx:id="organizerEvents" prefHeight="250.0" prefWidth="1115.0" spacing="20" styleClass="eventListBox" />
          </content>
       </ScrollPane>
    </children>
