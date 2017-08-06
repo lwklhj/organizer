@@ -3,7 +3,6 @@ package resources.database.entity;
 
 import resources.database.DB;
 import resources.database.UserAccess;
-import scene.Task.entity.Task;
 
 import javax.sql.rowset.CachedRowSet;
 import java.sql.Date;
@@ -17,7 +16,7 @@ import java.util.List;
  */
 public class User {
     private String userID, name;
-    //private String userType;
+    private String userType;
     private GregorianCalendar birthDate;
     private String email;
     private int hpNumber;
@@ -35,6 +34,17 @@ public class User {
         this.email = email;
         this.hpNumber = hpNumber;
         this.gender = gender;
+    }
+
+    public User(String userID, String name, Date birthDate, String email, int hpNumber, char gender, String userType) {
+        this.userID = userID;
+        this.name = name;
+        this.birthDate = new GregorianCalendar();
+        this.birthDate.setTime(birthDate);
+        this.email = email;
+        this.hpNumber = hpNumber;
+        this.gender = gender;
+        this.userType = userType;
     }
 
     public String getUserID() {
@@ -85,6 +95,14 @@ public class User {
         this.gender = gender;
     }
 
+    public String getUserType() {
+        return  userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
     public String getFullGender(){
         switch(gender){
             case 'm':return "Male";
@@ -93,21 +111,12 @@ public class User {
         }
     }
 
-    public ArrayList<Task> getTask(){
-        ArrayList<Task> taskArr=new ArrayList<>();
-
-
-        return taskArr;
-
-
-    }
-
     @Override
     public String toString() {
         return userID+"\t"+name;
     }
 
-    public static User getUserInfomation(String userID){
+    public static User getUserInformation(String userID){
         CachedRowSet rs=DB.read("select * from User where userID='"+userID+"'");
         User user=new User();
         try {
@@ -147,17 +156,46 @@ public class User {
     }
 
     public static boolean verifyUser(String userID, String password) {
-        CachedRowSet rs = DB.read("SELECT userID, name, birthDate, email, hpNumber, gender FROM User WHERE userID='" + userID + "' && password='" + password + "'");
+        CachedRowSet rs = DB.read("SELECT userID, name, birthDate, email, hpNumber, gender, userType FROM User WHERE userID='" + userID + "' && password='" + password + "'");
 
         if(rs.size() == 0)
             return false;
 
         try {
             if(rs.next()) {
-                new UserAccess(new User(rs.getString("userID"), rs.getString("name"), rs.getDate("birthDate"), rs.getString("email"), rs.getInt("hpNumber"), (rs.getString("gender")).charAt(0)));
+                new UserAccess(new User(rs.getString("userID"), rs.getString("name"), rs.getDate("birthDate"), rs.getString("email"), rs.getInt("hpNumber"), (rs.getString("gender")).charAt(0), rs.getString("userType")));
             }
         } catch (SQLException e) {e.printStackTrace();}
 
         return true;
+    }
+
+    public static ArrayList<User> getEventMember(int id){
+        ArrayList<User> arr=new ArrayList<>(  );
+        CachedRowSet rs=DB.read( "select * from User u inner join UserEvents ue on u.userID=ue.userID where ue.eventID="+id );
+
+        try {
+            while(rs.next()){
+                User user=new User();
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+                user.setUserID(rs.getString("userID"));
+                Date date=rs.getDate("birthDate");
+                GregorianCalendar gc=new GregorianCalendar();
+                gc.setTime(date);
+                user.setBirthDate(gc);
+                String gender=rs.getString("gender");
+                char c=gender.charAt(0);
+                user.setGender(c);
+                user.setHpNumber(rs.getInt("hpNumber"));
+                arr.add( user );
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return arr;
+
     }
 }
