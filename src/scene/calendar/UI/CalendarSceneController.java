@@ -89,16 +89,16 @@ public class CalendarSceneController implements Initializable {
     @FXML
     void previousMth(ActionEvent event) {
         calendar.manipulateMth(-1);
-        clearGrid();
+        clearAndRepopulateGrid();
     }
 
     @FXML
     void nextMth(ActionEvent event) {
         calendar.manipulateMth(+1);
-        clearGrid();
+        clearAndRepopulateGrid();
     }
 
-    public void clearGrid() {
+    public void clearAndRepopulateGrid() {
         for(CustomButton customButton : CALENDAR_BUTTON) {
             customButton.suicide();
         }

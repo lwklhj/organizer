@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="763.0" prefWidth="1338.0" style="-fx-background-color: white;" stylesheets="@MainSceneController.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.main.UI.MainSceneController">
+   <children>
+      <AnchorPane fx:id="content" layoutX="63.0" prefHeight="763.0" prefWidth="1275.0">
+         <children>
+            <JFXSpinner layoutX="622.0" layoutY="366.0" />
+            <Button layoutX="247.0" layoutY="471.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-padding: 0px;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="763.0" prefWidth="63.0" style="-fx-background-color: #303030;">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="382.0" prefWidth="63.0">
+               <children>
+                  <ToggleButton mnemonicParsing="false" onAction="#homeClick" prefHeight="63.0" prefWidth="63.0">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="menuBar" />
+                     </toggleGroup>
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/images/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <AnchorPane prefHeight="12.0" />
+                  <ToggleButton mnemonicParsing="false" onAction="#calendarClick" prefHeight="63.0" prefWidth="63.0" toggleGroup="$menuBar">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/images/calendar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <AnchorPane prefHeight="12.0" />
+                  <ToggleButton mnemonicParsing="false" onAction="#eventClick" prefHeight="63.0" prefWidth="63.0" toggleGroup="$menuBar">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/images/event.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <AnchorPane prefHeight="12.0" />
+                  <ToggleButton mnemonicParsing="false" onAction="#taskClick" prefHeight="63.0" prefWidth="63.0" textFill="WHITE" toggleGroup="$menuBar">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/images/task.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <AnchorPane prefHeight="12.0" />
+                  <ToggleButton mnemonicParsing="false" onAction="#noteClick" prefHeight="63.0" prefWidth="63.0" textFill="WHITE" toggleGroup="$menuBar">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/images/note.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <AnchorPane prefHeight="12.0" />
+                  <ToggleButton mnemonicParsing="false" onAction="#surveyClick" prefHeight="63.0" prefWidth="63.0" textFill="WHITE" toggleGroup="$menuBar">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/images/survey.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <AnchorPane prefHeight="12.0" />
+                  <ToggleButton mnemonicParsing="false" onAction="#reportClick" prefHeight="63.0" prefWidth="63.0" textFill="WHITE" toggleGroup="$menuBar">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/images/report.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+               </children>
+            </VBox>
+            <ToggleButton layoutY="635.0" mnemonicParsing="false" onAction="#profileClick" prefHeight="63.0" prefWidth="63.0" textFill="WHITE" toggleGroup="$menuBar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/images/profile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            <Button id="logoutBtn" layoutY="698.0" mnemonicParsing="false" onAction="#logoutClick" style="-fx-padding: 13px;">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/images/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

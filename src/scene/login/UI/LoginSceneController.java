@@ -9,18 +9,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import scene.login.LoginController;
-import scene.login.entity.User;
 
-// awt for app to browser bridge
-import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+// awt for app to browser bridge
 
 public class LoginSceneController implements Initializable {
     private LoginController loginController = new LoginController();
@@ -47,13 +47,15 @@ public class LoginSceneController implements Initializable {
     @FXML
     void loginClick(ActionEvent event) {
         if(!loginController.verifyUser(userIDField.getText(), new String(passwordField.getText()))) {
-            System.out.println("Error: Wrong username or password");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Wrong username or password");
+            alert.showAndWait();
             return;
         }
 
         // Continue to main scene
         Parent root= null;
-        try {root = FXMLLoader.load(getClass().getResource("../../main/MainScene_2.fxml"));} catch (IOException e) {}
+        try {root = FXMLLoader.load(getClass().getResource("../../main/UI/MainScene_2.fxml"));} catch (IOException e) {}
 
         Scene scene=new Scene(root);
         Stage stage = (Stage)((Node)event.getTarget()).getScene().getWindow();

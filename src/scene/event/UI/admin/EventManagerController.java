@@ -23,7 +23,8 @@ public class EventManagerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        populateDisplay();
+        EventController.setEventManagerController(this);
+        displayOrganizerEvents();
     }
 
     @FXML
@@ -41,7 +42,7 @@ public class EventManagerController implements Initializable {
         stage.show();
     }
 
-    private void populateDisplay() {
+    public void displayOrganizerEvents() {
         ArrayList<Event> eventArrayList = EventController.getOrganizerEvents();
         for(Event event : eventArrayList) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../EventObject.fxml"));

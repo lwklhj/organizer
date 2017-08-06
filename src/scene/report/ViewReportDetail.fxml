@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.report.ViewReportDetailController">
+   <children>
+      <Button fx:id="close" layoutX="248.0" layoutY="340.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="104.0" text="Close" />
+      <VBox fx:id="vBoxTable" layoutX="81.0" layoutY="57.0" prefHeight="264.0" prefWidth="439.0">
+         <children>
+            <AnchorPane prefHeight="270.0" prefWidth="439.0">
+               <children>
+                  <Label layoutX="15.0" layoutY="12.0" prefHeight="25.0" prefWidth="136.0" text="Event Rated">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="rateEventF" layoutX="297.0" layoutY="24.0" prefHeight="17.0" prefWidth="116.0" text="Label" />
+                  <Label fx:id="reportqn2" layoutX="15.0" layoutY="52.0" text="Event Venue Rated">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportqn3" layoutX="15.0" layoutY="88.0" text="Event hearabout">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportqn4" layoutX="15.0" layoutY="124.0" text="Favourite event">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportqn5" layoutX="15.0" layoutY="162.0" text="Event Improvement">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="rateVenueF" layoutX="297.0" layoutY="56.0" text="Label" />
+                  <Label fx:id="hearEventF" layoutX="297.0" layoutY="88.0" text="Label" />
+                  <Label fx:id="q1F" layoutX="297.0" layoutY="124.0" text="Label" />
+                  <Label fx:id="q2F" layoutX="297.0" layoutY="162.0" text="Label" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <Label layoutX="270.0" layoutY="14.0" text="Report">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

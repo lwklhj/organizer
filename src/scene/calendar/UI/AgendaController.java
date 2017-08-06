@@ -9,9 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import resources.database.DB;
 import scene.calendar.CalendarController;
-import scene.event.EventController;
 import scene.event.UI.EventViewController;
 import scene.event.entity.Event;
 
@@ -26,6 +24,10 @@ import java.util.ResourceBundle;
  * Created by Liu Woon Kit on 13/6/2017.
  */
 public class AgendaController implements Initializable {
+
+    @FXML
+    Label dayOfWeekLbl;
+
     @FXML
     Label dateLbl;
 
@@ -51,9 +53,10 @@ public class AgendaController implements Initializable {
 
     public void getTimes(GregorianCalendar date) {
         clearAgenda();
+        dayOfWeekLbl.setText((new SimpleDateFormat("EEEE")).format(date.getTime()));
         dateLbl.setText((new SimpleDateFormat("d MMM YYYY")).format(date.getTime()));
 
-        ArrayList<Event> events = CalendarController.getEvents(date);
+        ArrayList<Event> events = CalendarController.getEventsOfDate(date);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HHmm");
         for(Event e : events) {
             insertTime(Double.valueOf(simpleDateFormat.format(e.getStartTime())), Double.valueOf(simpleDateFormat.format(e.getEndTime())), e);
@@ -81,6 +84,7 @@ public class AgendaController implements Initializable {
         //double x = eventsPane.getLayoutX();
 
         Button btn = new Button(event.getTitle());
+        btn.setStyle("-fx-background-color: #9fa8da;");
         btn.setLayoutX(10);
         //System.out.println("Layout Y: " + startTime);
         btn.setLayoutY(startTime);

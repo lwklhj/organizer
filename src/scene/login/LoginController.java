@@ -1,11 +1,6 @@
 package scene.login;
 
-import resources.database.DB;
-import resources.database.UserDAO;
-import scene.login.entity.User;
-
-import javax.sql.rowset.CachedRowSet;
-import java.sql.SQLException;
+import resources.database.entity.User;
 
 /**
  * Created by Liu Woon Kit on 5/7/2017.

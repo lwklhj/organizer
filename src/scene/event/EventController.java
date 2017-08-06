@@ -1,14 +1,11 @@
 package scene.event;
 
-import javafx.scene.layout.AnchorPane;
-import resources.database.DB;
-import resources.database.UserDAO;
+import resources.database.UserAccess;
 import scene.event.UI.EventMainController;
+import scene.event.UI.admin.EventManagerController;
 import scene.event.entity.Event;
 
-import javax.sql.rowset.CachedRowSet;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,11 +14,16 @@ import java.util.Collections;
  * Created by Liu Woon Kit on 5/7/2017.
  */
 public class EventController {
-    private static final String userID = UserDAO.getUser().getUserID();
+    private static final String userID = UserAccess.getUser().getUserID();
     private static EventMainController eventMainController = null;
+    private static EventManagerController eventManagerController = null;
 
     public static void setEventMainController(EventMainController e) {
         eventMainController = e;
+    }
+
+    public static void setEventManagerController(EventManagerController e) {
+        eventManagerController = e;
     }
 
     public static String getOrganizerName(Event event) {
@@ -60,5 +62,6 @@ public class EventController {
 
     public static void onUpdate() {
         eventMainController.displayEvents();
+        eventManagerController.displayOrganizerEvents();
     }
 }

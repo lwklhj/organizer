@@ -1,6 +1,6 @@
 package scene.calendar.entity;
 
-import javafx.geometry.Pos;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -37,20 +37,20 @@ public class CustomButton extends Button {
     }
 
     public void display() {
-        super.setOnAction(event -> CalendarController.showAgenda(date));
-        dateLabel.setText(Integer.toString(date.get(GregorianCalendar.DAY_OF_MONTH)));
+        Platform.runLater(() -> {
+            super.setOnAction(event -> CalendarController.showAgenda(date));
+            dateLabel.setText(Integer.toString(date.get(GregorianCalendar.DAY_OF_MONTH)));
 
-        /*int eventNum = CalendarController.getNumOfEvents(date);
-        if(eventNum > 0) {
-            eventLabel.setText(eventNum + " event");
-            System.out.println(eventNum);
-        }*/
+            int eventNum = CalendarController.getNumOfEvents(date);
+            if(eventNum > 0) {
+                eventLabel.setText(eventNum + " event");
+            }
 
-        /*int taskNum = CalendarController.getNumOfTasks(date);
-        if(taskNum > 0){
-            taskLabel.setText(1 + "task");
-        }*/
-
+            /*int taskNum = CalendarController.getNumOfTasks(date);
+            if(taskNum > 0){
+                taskLabel.setText(1 + "task");
+            }*/
+        });
     }
 
     public void suicide() {

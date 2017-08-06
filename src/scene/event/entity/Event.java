@@ -1,13 +1,11 @@
 package scene.event.entity;
 
-import org.jetbrains.annotations.NotNull;
 import resources.database.DB;
 
 import javax.sql.rowset.CachedRowSet;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -190,6 +188,33 @@ public class Event implements Comparable<Event> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static int getNumOfEventsOfDate(String userID, String date) {
+        CachedRowSet rs = DB.read("SELECT count(*) FROM Events e INNER JOIN UserEvents ue ON e.eventID = ue.eventID WHERE date='"+date+"' && userID = '"+userID+"'");
+
+        try {
+            if(rs.next()) {
+                return rs.getInt("count(*)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public static ArrayList<Event> getEventsOfDate(String userID, String date) {
+        ArrayList<Event> events = new ArrayList<>();
+        CachedRowSet rs = DB.read("SELECT * FROM Events e INNER JOIN UserEvents ue ON e.eventID = ue.eventID WHERE date='"+date+"' && userID = '"+userID+"'");
+        try {
+            while(rs.next()) {
+                events.add(new Event(rs.getInt("eventID"), rs.getString("eventTitle"), rs.getString("eventDesc"), rs.getString("location"), rs.getDate("date"), rs.getTime("startTime"), rs.getTime("endTime")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return events;
     }
 
 

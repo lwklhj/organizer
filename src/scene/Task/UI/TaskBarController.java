@@ -1,6 +1,5 @@
 package scene.Task.UI;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -13,6 +12,7 @@ import scene.Task.TaskControllerKt;
 import scene.Task.entity.Task;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -26,28 +26,42 @@ public class TaskBarController implements Initializable{
     private Task task;
 
     private TaskMainController tc;
-
-
-
-
+    @FXML
+    private Label date;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
 
 
     }
     public Task getTask(){
         return task;
     }
-    public void setTaskInfo(Task task){
+    public void setTaskInfo(Task task,boolean setDate){
+
+        // set date is left side
         this.task=task;
         String taskName=task.getTask_name();
         addLabel(taskName);
-        if(task.getStart()!=null){
+        if(task.getSdate()!=null){
+            if(setDate){
+                Calendar cal=TaskControllerKt.getCalendarByDate(task.getSdate());
+                SimpleDateFormat sf=new SimpleDateFormat("EE");
+                String dayOfWeek= sf.format(cal.getTime());
+                int month=cal.get(Calendar.MONTH)+1;
+                int day=cal.get(Calendar.DAY_OF_MONTH);
 
-            String timeLocation= TaskControllerKt.calStringTime(task.getStart());
-            if(task.getLocation()!=null||task.getLocation()!=""){
+                date.setText(dayOfWeek+"\n"+day+"/"+month);
+
+            }
+
+            String timeLocation= task.getSdate();
+            String[] data= timeLocation.split("-");
+            timeLocation=data[2]+"/"+data[1]+"/"+data[0];
+
+
+            if(task.getLocation()!=null&&task.getLocation()!=""){
+
                 timeLocation+=" at "+task.getLocation();
             }
             addLabel(timeLocation);
@@ -56,11 +70,8 @@ public class TaskBarController implements Initializable{
             String event=task.getEvent();
             addLabel(event);
         }
+
         taskInfoVbox.setStyle("-fx-background-color:"+task.getPriority().getColor());
-
-
-
-
     }
     @FXML
     void showTaskDetails(MouseEvent event) {
@@ -75,4 +86,5 @@ public class TaskBarController implements Initializable{
 
 
     }
+
 }

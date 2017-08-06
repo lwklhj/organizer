@@ -1,0 +1,14 @@
+.toggle-button, #logoutBtn {
+    -fx-background-color:transparent;
+    -fx-padding: 0px;
+    -fx-opacity: 0.5;
+}
+
+.toggle-button:hover, #logoutBtn:hover {
+    -fx-background-color:#9e9e9e;
+}
+
+.toggle-button:selected, #logoutBtn:focus {
+    -fx-background-color:#757575;
+    -fx-opacity: 1;
+}

@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-
+<?import javafx.scene.layout.*?>
 <AnchorPane prefHeight="763.0" prefWidth="375.0" style="-fx-background-color: #424242;" stylesheets="@Agenda.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="83.0" prefWidth="285.0" style="-fx-background-color: #757575;">
@@ -19,7 +12,7 @@
             <Label layoutX="124.0" layoutY="48.0" text="New event coming " textFill="WHITE" />
          </children>
       </Pane>
-      <Label layoutX="29.0" layoutY="107.0" style="-fx-font-size: 32px; -fx-opacity: 0.5;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="Monday" textFill="WHITE" />
+      <Label fx:id="dayOfWeekLbl" layoutX="29.0" layoutY="107.0" style="-fx-font-size: 32px; -fx-opacity: 0.5;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="Monday" textFill="WHITE" />
       <ImageView fitHeight="235.0" fitWidth="90.0" layoutX="285.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../resources/images/ribbon.png" />

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-
 <AnchorPane prefHeight="763.0" prefWidth="1275.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.Task.UI.TaskMainController">
    <children>
       <AnchorPane prefHeight="782.0" prefWidth="368.0">
@@ -20,10 +18,8 @@
                   <VBox fx:id="taskContainer" prefHeight="721.0" prefWidth="360.0" spacing="10" />
                </content>
             </ScrollPane>
-            <JFXComboBox layoutY="17.0" prefHeight="26.0" prefWidth="139.0" />
+            <JFXComboBox fx:id="dateSelect" layoutX="15.0" layoutY="17.0" prefHeight="26.0" prefWidth="139.0" />
             <JFXButton fx:id="addTaskButton" ellipsisString="" layoutX="336.0" layoutY="14.0" onAction="#addTask" prefHeight="32.0" prefWidth="32.0" />
-            <JFXCheckBox layoutX="178.0" layoutY="33.0" text="Event" />
-            <JFXCheckBox layoutX="178.0" layoutY="6.0" text="Personal" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="taskDetailsContainer" layoutX="390.0" layoutY="3.0" prefHeight="774.0" prefWidth="883.0">

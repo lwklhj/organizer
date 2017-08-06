@@ -1,13 +1,10 @@
 package scene.event.UI;
 
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import scene.event.UI.admin.EventEditorController;
@@ -59,7 +56,7 @@ public class EventObjectController implements Initializable {
             eventDescLbl.setText(event.getDesc().substring(0, 20) + "...");
         }
 
-        // On click event
+        // on event click
         paneClick.setOnMouseClicked(e -> {
             Stage stage = new Stage();
             stage.initModality(APPLICATION_MODAL);

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.note.ConfirmSaveController">
+   <children>
+      <AnchorPane prefHeight="96.0" prefWidth="600.0" style="-fx-background-color: grey;">
+         <children>
+            <Label alignment="CENTER" prefHeight="96.0" prefWidth="284.0" style="-fx-font-size: 24;" text="Alert!" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="saveButt" layoutX="378.0" layoutY="343.0" mnemonicParsing="false" onAction="#save" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: #3f51b5;" text="Save" textFill="WHITE" />
+      <Button fx:id="cancelButt" layoutX="495.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancel" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: #3f51b5;" text="Cancel" textFill="WHITE" />
+      <Text layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Save changes before exiting?" textAlignment="CENTER" wrappingWidth="600.0">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <Button fx:id="doNotSaveButt" layoutX="228.0" layoutY="343.0" mnemonicParsing="false" onAction="#doNotSave" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #3f51b5;" text="Do not save" textFill="WHITE" />
+   </children>
+</AnchorPane>

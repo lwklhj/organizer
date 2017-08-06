@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-
 <AnchorPane prefHeight="763.0" prefWidth="1275.0" style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.event.UI.EventMainController">
    <children>
       <Label layoutX="68.0" layoutY="75.0" style="-fx-font-size: 36px;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="New Events" textFill="WHITE" />
@@ -19,7 +18,8 @@
       <ScrollPane layoutX="58.0" layoutY="478.0" prefHeight="268.0" prefWidth="1160.0" stylesheets="@EventMain.css">
          <content>
             <HBox fx:id="eventListBox" prefHeight="250.0" prefWidth="1115.0" spacing="20" styleClass="eventListBox" />
-         </content></ScrollPane>
+         </content>
+      </ScrollPane>
       <JFXButton layoutX="508.0" layoutY="24.0" onAction="#manageEvents" text="Manage Events" />
    </children>
 </AnchorPane>

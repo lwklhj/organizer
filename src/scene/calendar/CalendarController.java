@@ -1,12 +1,10 @@
 package scene.calendar;
 
-import resources.database.DB;
-import resources.database.UserDAO;
+import resources.database.UserAccess;
+import scene.Task.entity.Task;
 import scene.calendar.UI.AgendaController;
 import scene.event.entity.Event;
 
-import javax.sql.rowset.CachedRowSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -16,32 +14,7 @@ import java.util.GregorianCalendar;
  */
 public class CalendarController {
     private static AgendaController agendaController = null;
-    private static String  userID = UserDAO.getUser().getUserID();
-
-    public static int getNumOfEvents(GregorianCalendar gregorianCalendar) {
-        CachedRowSet rs = DB.read("SELECT * FROM Events e INNER JOIN UserEvents ue ON e.eventID = ue.eventID WHERE date='"+dateFormat(gregorianCalendar)+"' && userID = '"+userID+"'");
-        int i = 0;
-        try {
-            while(rs.next()) {
-                i++;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println(i);
-        return i;
-    }
-
-    public static int getNumOfTasks(GregorianCalendar gregorianCalendar) {
-        return 1;
-    }
-
-    // yyyy-mm-dd
-    public static String dateFormat(GregorianCalendar gregorianCalendar) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        simpleDateFormat.setCalendar(gregorianCalendar);
-        return simpleDateFormat.format(gregorianCalendar.getTime());
-    }
+    private static String userID = UserAccess.getUser().getUserID();
 
     public static void setAgendaController(AgendaController a) {
         agendaController = a;
@@ -51,18 +24,26 @@ public class CalendarController {
         agendaController.getTimes(gregorianCalendar);
     }
 
-    public static ArrayList<Event> getEvents(GregorianCalendar gregorianCalendar) {
-        ArrayList<Event> events = new ArrayList<>();
-        CachedRowSet rs = DB.read("SELECT * FROM Events e INNER JOIN UserEvents ue ON e.eventID = ue.eventID WHERE date='"+dateFormat(gregorianCalendar)+"' && userID = '"+userID+"'");
-        try {
-            while(rs.next()) {
-                events.add(new Event(rs.getInt("eventID"), rs.getString("eventTitle"), rs.getString("eventDesc"), rs.getString("location"), rs.getDate("date"), rs.getTime("startTime"), rs.getTime("endTime")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return events;
+    // yyyy-mm-dd
+    public static String dateFormat(GregorianCalendar gregorianCalendar) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        simpleDateFormat.setCalendar(gregorianCalendar);
+        return simpleDateFormat.format(gregorianCalendar.getTime());
     }
 
+    public static int getNumOfEvents(GregorianCalendar gregorianCalendar) {
+        return Event.getNumOfEventsOfDate(userID, dateFormat(gregorianCalendar));
+    }
 
+    public static ArrayList<Event> getEventsOfDate(GregorianCalendar gregorianCalendar) {
+        return Event.getEventsOfDate(userID, dateFormat(gregorianCalendar));
+    }
+
+    public static int getNumOfTasks(GregorianCalendar gregorianCalendar) {
+        return 1;
+    }
+
+    public static ArrayList<Task> getTaskOfDate(GregorianCalendar gregorianCalendar) {
+        return null;
+    }
 }
