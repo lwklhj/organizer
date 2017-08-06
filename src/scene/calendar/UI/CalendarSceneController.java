@@ -41,6 +41,7 @@ public class CalendarSceneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Set agenda controller to calendar controller
         CalendarController.setAgendaController(agendaController);
 
         // Agenda

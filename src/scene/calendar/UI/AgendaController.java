@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import scene.calendar.CalendarController;
+import scene.event.EventController;
 import scene.event.UI.EventViewController;
 import scene.event.entity.Event;
 
@@ -56,11 +57,17 @@ public class AgendaController implements Initializable {
         dayOfWeekLbl.setText((new SimpleDateFormat("EEEE")).format(date.getTime()));
         dateLbl.setText((new SimpleDateFormat("d MMM YYYY")).format(date.getTime()));
 
-        ArrayList<Event> events = CalendarController.getEventsOfDate(date);
+        ArrayList<Event> events = EventController.getEventsOfDate(CalendarController.dateFormat(date));
+        //ArrayList<Task> tasks  = TaskControllerKt.getTaskByUser(UserAccess.getUser().getUserID(), TaskControllerKt.getDateFormatYear().format(date.getTime()));
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HHmm");
         for(Event e : events) {
             insertTime(Double.valueOf(simpleDateFormat.format(e.getStartTime())), Double.valueOf(simpleDateFormat.format(e.getEndTime())), e);
         }
+
+        /*for(Task t : tasks) {
+            insertTime(Double.valueOf(simpleDateFormat.format(t.getStime())), Double.valueOf(simpleDateFormat.format(t.getEtime())), t);
+        }*/
     }
 
     public void insertTime(double startTime, double endTime, Event event) {
@@ -84,7 +91,7 @@ public class AgendaController implements Initializable {
         //double x = eventsPane.getLayoutX();
 
         Button btn = new Button(event.getTitle());
-        btn.setStyle("-fx-background-color: #9fa8da;");
+        btn.setStyle("-fx-background-color: #"+ Math.random() * 900000 +";");
         btn.setLayoutX(10);
         //System.out.println("Layout Y: " + startTime);
         btn.setLayoutY(startTime);

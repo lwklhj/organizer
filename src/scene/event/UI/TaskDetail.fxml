@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="945.0" prefWidth="783.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.event.UI.TaskDetailController">
+   <children>
+      <VBox layoutX="150.0" layoutY="199.0" prefHeight="686.0" prefWidth="484.0">
+         <children>
+            <AnchorPane prefHeight="94.0" prefWidth="484.0">
+               <children>
+                  <Label text="Task Name:" />
+                  <Label fx:id="taskName" layoutX="233.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="94.0" prefWidth="484.0">
+               <children>
+                  <Label text="Start Date" />
+                  <Label fx:id="startDate" layoutX="233.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="94.0" prefWidth="484.0">
+               <children>
+                  <Label text="End Date:" />
+                  <Label fx:id="endDate" layoutX="233.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="94.0" prefWidth="484.0">
+               <children>
+                  <Label text="Description:" />
+                  <Label fx:id="description" layoutX="233.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="94.0" prefWidth="484.0">
+               <children>
+                  <Label text="Priority:" />
+                  <Label fx:id="priority" layoutX="233.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="94.0" prefWidth="484.0">
+               <children>
+                  <Label text="Repeat:" />
+                  <Label fx:id="repeat" layoutX="233.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="94.0" prefWidth="484.0">
+               <children>
+                  <Label text="Location:" />
+                  <Label fx:id="location" layoutX="233.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <Label layoutX="240.0" layoutY="78.0" text="Task Information">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="326.0" layoutY="848.0" onAction="#close" style="-fx-background-color: grey;" text="Close" />
+   </children>
+</AnchorPane>

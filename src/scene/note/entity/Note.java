@@ -5,18 +5,17 @@ import resources.database.UserAccess;
 
 public class Note {
     private String adminNo = UserAccess.getUser().getUserID();
-
     private String group;
     private String title;
     private String content;
     private boolean isPined;
     private int noteID;
-    public Note(String group, String title, String content, boolean isPined) {
+    public Note(int id,String group, String title, String content, boolean isPined) {
         this.group = group;
         this.title = title;
         this.content = content;
         this.isPined=isPined;
-
+        this.noteID = id;
     }
 
     public boolean isPined() {
@@ -50,9 +49,18 @@ public class Note {
     }
 
     public void storeData() {
+        System.out.println(String.format("insert into note(groupName,title,content,isPined,userID) value(\"%s\",\"%s\",\"%s\",%d,\"%s\")",group,title,content,1, adminNo));
         int val=0;
         if(isPined)
             val=1;
-        DB.update(String.format("insert into note value(%d,\"%s\",\"%s\",\"%s\",%d,\"%s\")",noteID,group,title,content,val, adminNo));
+        DB.update(String.format("insert into note(groupName,title,content,isPined,userID) value(\"%s\",\"%s\",\"%s\",%d,\"%s\")",group,title,content,val, adminNo));
+    }
+
+    public int getNoteID() {
+        return noteID;
+    }
+
+    public void setNoteID(int noteID) {
+        this.noteID = noteID;
     }
 }

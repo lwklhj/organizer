@@ -64,4 +64,13 @@ public class EventController {
         eventMainController.displayEvents();
         eventManagerController.displayOrganizerEvents();
     }
+
+    // For calendar functionality
+    public static ArrayList<Event> getEventsOfDate(String date) {
+        return Event.getEventsOfDate(userID, date);
+    }
+
+    public static int getNumOfEventsOfDate(String date) {
+        return Event.getNumOfEventsOfDate(userID, date);
+    }
 }

@@ -12,6 +12,12 @@ import kotlin.collections.ArrayList
  * Created by hhf on 6/28/17.
  */
 
+fun getTaskByEvent(eventID:Int): ArrayList<Task> {
+    println(eventID);
+    val rs=DB.read("select * from task where eventID='$eventID' and complete=0")
+    return processResultSet(rs);
+}
+
 fun getTaskByUser(userID:String):ArrayList<Task>{
     val rs=DB.read("select * from task where creatorID='$userID' and complete=0")
     //retrive personal first

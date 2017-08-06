@@ -47,7 +47,7 @@ public class NewNoteController implements Initializable{
 
     @FXML
     void save(ActionEvent event) {
-        Note n = new Note(currentGroup, title.getText(), content.getText(),isPined);
+        Note n = new Note(-1,currentGroup, title.getText(), content.getText(),isPined);
         n.storeData();
         Stage currentWindow = (Stage) saveButton.getScene().getWindow();
         currentWindow.close();

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="750.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.event.UI.ViewEventDetailController">
+   <children>
+      <JFXListView fx:id="memberView" layoutX="40.0" layoutY="180.0" prefHeight="536.0" prefWidth="400.0" />
+      <JFXListView fx:id="taskView" layoutX="477.0" layoutY="180.0" prefHeight="536.0" prefWidth="300.0" />
+      <Label layoutX="86.0" layoutY="107.0" text="Event Member">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="516.0" layoutY="107.0" text="Event Task">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="336.0" text="Event ">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="evntLabel" layoutX="627.0" layoutY="49.0">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="eventNameField" layoutX="627.0" layoutY="49.0">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

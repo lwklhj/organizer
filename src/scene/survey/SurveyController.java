@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -129,8 +128,8 @@ public class SurveyController implements Initializable {
             SurveyQn sq=new SurveyQn(-1,rEvent,rVenue,he,ans4txt,ans5txt,"123456A");
             sq.save();
 
-            Stage stage=(Stage)ans4.getScene().getWindow();
-            stage.close();
+            /*Stage stage=(Stage)ans4.getScene().getWindow();
+            stage.close();*/
 
 
         }

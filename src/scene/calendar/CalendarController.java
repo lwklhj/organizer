@@ -1,12 +1,8 @@
 package scene.calendar;
 
-import resources.database.UserAccess;
-import scene.Task.entity.Task;
 import scene.calendar.UI.AgendaController;
-import scene.event.entity.Event;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 /**
@@ -14,12 +10,12 @@ import java.util.GregorianCalendar;
  */
 public class CalendarController {
     private static AgendaController agendaController = null;
-    private static String userID = UserAccess.getUser().getUserID();
 
     public static void setAgendaController(AgendaController a) {
         agendaController = a;
     }
 
+    // Request agenda scene to retrieve and display events of stated date
     public static void showAgenda(GregorianCalendar gregorianCalendar) {
         agendaController.getTimes(gregorianCalendar);
     }
@@ -29,21 +25,5 @@ public class CalendarController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         simpleDateFormat.setCalendar(gregorianCalendar);
         return simpleDateFormat.format(gregorianCalendar.getTime());
-    }
-
-    public static int getNumOfEvents(GregorianCalendar gregorianCalendar) {
-        return Event.getNumOfEventsOfDate(userID, dateFormat(gregorianCalendar));
-    }
-
-    public static ArrayList<Event> getEventsOfDate(GregorianCalendar gregorianCalendar) {
-        return Event.getEventsOfDate(userID, dateFormat(gregorianCalendar));
-    }
-
-    public static int getNumOfTasks(GregorianCalendar gregorianCalendar) {
-        return 1;
-    }
-
-    public static ArrayList<Task> getTaskOfDate(GregorianCalendar gregorianCalendar) {
-        return null;
     }
 }

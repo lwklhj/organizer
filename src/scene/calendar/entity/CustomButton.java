@@ -4,8 +4,13 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import resources.database.UserAccess;
+import scene.Task.TaskControllerKt;
+import scene.Task.entity.Task;
 import scene.calendar.CalendarController;
+import scene.event.EventController;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 /**
@@ -41,15 +46,23 @@ public class CustomButton extends Button {
             super.setOnAction(event -> CalendarController.showAgenda(date));
             dateLabel.setText(Integer.toString(date.get(GregorianCalendar.DAY_OF_MONTH)));
 
-            int eventNum = CalendarController.getNumOfEvents(date);
+            int eventNum = EventController.getNumOfEventsOfDate(CalendarController.dateFormat(date));
             if(eventNum > 0) {
                 eventLabel.setText(eventNum + " event");
             }
 
-            /*int taskNum = CalendarController.getNumOfTasks(date);
-            if(taskNum > 0){
-                taskLabel.setText(1 + "task");
-            }*/
+            Platform.runLater(() -> {
+                ArrayList<Task> taskArrayList = TaskControllerKt.getTaskByUser(UserAccess.getUser().getUserID(), TaskControllerKt.getYearDateFormat().format(date.getTime()));
+                int taskNum = 0;
+
+                for(Task task : taskArrayList) {
+                    taskNum++;
+                }
+
+                if(taskNum > 0){
+                    taskLabel.setText(taskNum + " task");
+                }
+            });
         });
     }
 

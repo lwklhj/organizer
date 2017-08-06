@@ -155,6 +155,10 @@ fun getDayEnd(date:Calendar):Calendar{
     return date
 }
 
+fun getTaskByEvent(eventID:Int): ArrayList<Task> {
+    return scene.Task.entity.getTaskByEvent(eventID);
+}
+
 internal var yearDateFormat = SimpleDateFormat("yyyy-MM-dd")
 internal var dateFormatYear = SimpleDateFormat("dd-MM-yyyy")
 var YearFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")

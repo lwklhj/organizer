@@ -46,6 +46,7 @@ public class noteController implements Initializable {
 
     @FXML
     private VBox groupList;
+    //private int noteID=Note.getNoteID();
 
     @FXML
     private Button addGroup;
@@ -137,10 +138,10 @@ public class noteController implements Initializable {
         try {
             while(rs.next()){
                 if(rs.getInt("isPined")>0){
-                    pinnedArr.add(new Note(rs.getString("groupName"), rs.getString("title"), rs.getString("content"),true));
+                    pinnedArr.add(new Note(rs.getInt("noteID"),rs.getString("groupName"), rs.getString("title"), rs.getString("content"),true));
 
                 }else{
-                    othersArr.add(new Note(rs.getString("groupName"), rs.getString("title"), rs.getString("content"),false));
+                    othersArr.add(new Note(rs.getInt("noteID"),rs.getString("groupName"), rs.getString("title"), rs.getString("content"),false));
                 }
 
 
@@ -181,7 +182,7 @@ public class noteController implements Initializable {
                         }
 
                     }else if(event.getButton().equals(MouseButton.SECONDARY)) {
-                        showContextMenu(button);
+                        showContextMenu(button,others.getChildren().indexOf(button),othersArr);
                     }
                 }
             });
@@ -216,7 +217,7 @@ public class noteController implements Initializable {
                         }
 
                     }else if(event.getButton().equals(MouseButton.SECONDARY)) {
-                        showContextMenu(button);
+                        showContextMenu(button,pinned.getChildren().indexOf(button),pinnedArr);
                     }
                 }
             });
@@ -246,13 +247,15 @@ public class noteController implements Initializable {
         retrieveNote(currentGroup);
     }
 
-    private void showContextMenu(Button btn){
+    private void showContextMenu(Button btn,int index,ObservableList<Note> arr){
         ContextMenu contextMenu=new ContextMenu();
         MenuItem delete=new MenuItem("delete");
         delete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DB.update("DELETE FROM note WHERE title='"+btn.getText()+"' AND userID='"+userID+"' ");
+                Note note=arr.get( index );
+
+                DB.update("DELETE FROM note WHERE noteID="+note.getNoteID());
                 retrieveNote(currentGroup);
             }
         });
