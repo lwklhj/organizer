@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+
 <AnchorPane prefHeight="763.0" prefWidth="1275.0" style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.event.UI.EventMainController">
    <children>
       <Label layoutX="68.0" layoutY="75.0" style="-fx-font-size: 36px;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="New Events" textFill="WHITE" />
@@ -20,6 +23,13 @@
             <HBox fx:id="eventListBox" prefHeight="250.0" prefWidth="1115.0" spacing="20" styleClass="eventListBox" />
          </content>
       </ScrollPane>
-      <JFXButton layoutX="508.0" layoutY="24.0" onAction="#manageEvents" text="Manage Events" />
+      <JFXButton fx:id="manageEventBtn" layoutX="989.0" layoutY="84.0" onAction="#manageEvents" style="-fx-font-size: 24px;" stylesheets="@../../../resources/fonts/Raleway-Light.css" text="Event Manager" textFill="WHITE" visible="false">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resources/images/manage_events.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
    </children>
 </AnchorPane>

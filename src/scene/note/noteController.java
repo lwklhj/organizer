@@ -22,19 +22,22 @@ import resources.database.DB;
 import resources.database.UserAccess;
 import scene.note.entity.Note;
 
+
+
 import javax.sql.rowset.CachedRowSet;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class noteController implements Initializable {
 
+
     private String userID = UserAccess.getUser().getUserID();
+    public ObservableList<Note> othersArr = FXCollections.observableArrayList();
 
-    private ObservableList<Note> othersArr = FXCollections.observableArrayList();
-
-    private ObservableList<String> groupArr= FXCollections.observableArrayList();
+    public ObservableList<String> groupArr= FXCollections.observableArrayList();
 
     private String currentGroup;
 
@@ -52,12 +55,14 @@ public class noteController implements Initializable {
     private Button addGroup;
 
     @FXML
-    private AnchorPane pinned;
+    public AnchorPane pinned;
 
-    private ObservableList<Note> pinnedArr =  FXCollections.observableArrayList();
+    public ObservableList<Note> pinnedArr =  FXCollections.observableArrayList();
 
+    //Note note = new Note();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         retrieveGroupFolder();
 
         if(groupArr.size()!=0) {
@@ -87,6 +92,7 @@ public class noteController implements Initializable {
     void addNewGroup(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("NewGroup.fxml"));
         Parent root=loader.load();
+        //noteMainController ctr=loader.getController();
         Scene scene = new Scene(root);
 
         Stage stage = new Stage();
@@ -98,6 +104,7 @@ public class noteController implements Initializable {
     }
 
     protected void retrieveGroupFolder(){
+
         DB db=new DB();
         CachedRowSet rs=db.read("SELECT * FROM groupFolder WHERE userID ='"+userID+"'  ");
 
@@ -113,11 +120,11 @@ public class noteController implements Initializable {
             e.printStackTrace();
         }
     }
-    protected void displayGroup(){
+    public void displayGroup(){
         groupList.getChildren().clear();
         for(int i=0; i<groupArr.size(); i++){
             Button button = new Button(groupArr.get(i));
-            button.setPrefSize(133, 56);
+            button.setPrefSize(145, 56);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -152,7 +159,7 @@ public class noteController implements Initializable {
         displayNote();
 
     }
-    private void displayNote(){
+    public void displayNote(){
         others.getChildren().clear();
         pinned.getChildren().clear();
         double width=120;

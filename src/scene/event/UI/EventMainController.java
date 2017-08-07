@@ -1,5 +1,6 @@
 package scene.event.UI;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import resources.database.UserAccess;
 import scene.event.EventController;
 import scene.event.entity.Event;
 
@@ -29,6 +31,9 @@ public class EventMainController implements Initializable {
     Label clockDisplay;
 
     @FXML
+    JFXButton manageEventBtn;
+
+    @FXML
     HBox newEventListBox;
 
     @FXML
@@ -39,6 +44,10 @@ public class EventMainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if(UserAccess.getUser().getUserType().equals("organizer") || UserAccess.getUser().getUserType().equals("staff")) {
+            manageEventBtn.setVisible(true);
+        }
+
         EventController.setEventMainController(this);
         displayEvents();
         startClock();

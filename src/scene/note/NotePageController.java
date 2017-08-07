@@ -1,5 +1,8 @@
 package scene.note;
 
+import resources.database.DB;
+import resources.database.UserAccess;
+import scene.note.entity.Note;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +15,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import resources.database.DB;
-import resources.database.UserAccess;
-import scene.note.entity.Note;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,7 +44,7 @@ public class NotePageController implements Initializable{
     private Image pinnedImage;
 
     @FXML
-    private TextArea noteContent;
+    public TextArea noteContent;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -66,11 +66,12 @@ public class NotePageController implements Initializable{
         if(control == null){
 
 
-        }else if(control.equals("no save")){
+            }else if(control.equals("no save")){
 
             closeStage(backAndSaveButt);
 
         }else if(control.equals("save")){
+
             note.setPined(isPined);
             String sqlQuery = "UPDATE note SET content= '"+noteContent.getText()+"'  WHERE noteID="+note.getNoteID();
 

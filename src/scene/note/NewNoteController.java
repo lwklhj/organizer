@@ -1,5 +1,6 @@
 package scene.note;
 
+import scene.note.entity.Note;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import scene.note.entity.Note;
 
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -100,6 +100,9 @@ public class AgendaController implements Initializable {
 
         eventsPane.getChildren().add(btn);
 
+        // Manual overwrite
+        event.setRegistered(true);
+
         btn.setOnAction(e -> {
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../event/UI/EventView.fxml"));

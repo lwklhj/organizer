@@ -52,8 +52,11 @@ public class EventObjectController implements Initializable {
 
         // Event Title
         eventTitleLbl.setText(event.getTitle());
-        if(event.getDesc().length() > 20) {
-            eventDescLbl.setText(event.getDesc().substring(0, 20) + "...");
+        if(event.getDesc().length() > 15) {
+            eventDescLbl.setText(event.getDesc().substring(0, 15) + "...");
+        }
+        else {
+            eventDescLbl.setText(event.getDesc());
         }
 
         // on event click
