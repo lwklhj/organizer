@@ -3,6 +3,7 @@ package resources.database.entity;
 
 import resources.database.DB;
 import resources.database.UserAccess;
+import scene.main.UI.MainSceneController;
 
 import javax.sql.rowset.CachedRowSet;
 import java.sql.Date;
@@ -166,7 +167,8 @@ public class User {
                 new UserAccess(new User(rs.getString("userID"), rs.getString("name"), rs.getDate("birthDate"), rs.getString("email"), rs.getInt("hpNumber"), (rs.getString("gender")).charAt(0), rs.getString("userType")));
             }
         } catch (SQLException e) {e.printStackTrace();}
-
+        MainSceneController.getReminders().loadDataBase();
+        
         return true;
     }
 
